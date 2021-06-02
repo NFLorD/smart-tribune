@@ -7,13 +7,13 @@ cd smart-tribune/infra
 docker-compose build \
 docker-compose up -d
 
-docker exec -t infra_php_1 sh -c "composer install \
-&& php /var/www/html/bin/console doctrine:database:create --if-not-exists \
+docker exec -t infra_php_1 sh -c "composer install \\ \
+&& php /var/www/html/bin/console doctrine:database:create --if-not-exists \\ \
 && php /var/www/html/bin/console doctrine:migrations:migrate --no-interaction"
 
 #### Preparing the test environment:
-docker exec -t infra_php_1 sh -c "php /var/www/html/bin/console --env=test doctrine:database:create --if-not-exists \
-&& php /var/www/html/bin/console --env=test doctrine:migrations:migrate --no-interaction \
+docker exec -t infra_php_1 sh -c "php /var/www/html/bin/console --env=test doctrine:database:create --if-not-exists \\ \
+&& php /var/www/html/bin/console --env=test doctrine:migrations:migrate --no-interaction \\ \
 && php /var/www/html/bin/console --env=test doctrine:fixtures:load --no-interaction"
 
 #### Running the tests:
