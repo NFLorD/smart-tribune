@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  php:
+    build: 
+      context: ./php
+    volumes:
+      - ..:/var/www/html
+    depends_on: 
+      - mysql
+    ports:
+      - "9000:9000"
+  nginx:
+    build: 
+      context: ./nginx
+    volumes:
+      - ..:/var/www/html
+    ports:
+      - "80:80"
+      - "443:443"
+  mysql:
+    build: 
+      context: ./mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
